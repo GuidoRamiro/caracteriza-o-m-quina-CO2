@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #importa os dados. ESPECIFICAR O TESTE
-dados_vazao = pd.read_excel(r"C:\Users\guilh\OneDrive\UFMG\IC\caracterização máquina co2\testes\17°C\86 bar\17_86_vazão.xlsx")
-dados_temperatura = pd.read_excel(r"C:\Users\guilh\OneDrive\UFMG\IC\caracterização máquina co2\testes\17°C\86 bar\17_86_temperatura.xlsx")
-dados_delta_h = pd.read_excel(r"C:\Users\guilh\OneDrive\UFMG\IC\caracterização máquina co2\testes\delta_h.xlsx")
+dados_vazao = pd.read_excel("endereço do arquivo de vazão")
+dados_temperatura = pd.read_excel("endereço do arquivo de temperatura")
+dados_delta_h = pd.read_excel("endereço do arquivo de delta h")
 
 tempo_lista = []
 pot_frig_lista = []
@@ -15,8 +15,8 @@ m_co2_lista = []
 
 #algumas constantes. ESPECIFICAR O TESTE
 cp = CP.PropsSI('C', 'T', 298.15, 'P', 101325.0, 'water')
-delta_h = (dados_delta_h['17_86'].iloc[0])*1E3
-compressor_pot = 600
+delta_h = (dados_delta_h['teste pretendido. Ex: 7_74 (7°C, 74 bar)'].iloc[0])*1E3
+compressor_pot = "potência do compressor em watts (tirar as aspas)"
 
 #calculos
 for index, row in dados_temperatura.iterrows():
@@ -49,4 +49,4 @@ plt.show()
 df_cop = pd.DataFrame({'tempo, s': tempo_lista, 'Vazão mássica de CO2, kg/s': m_co2_media, 'Potência frigorífica, W': pot_frig_media, 'COP': cop_lista, 'COP Médio': [cop_media] * len(tempo_lista)})
 
 #salva os dados. ESPECIFICAR O TESTE
-df_cop.to_excel(r"C:\Users\guilh\OneDrive\UFMG\IC\caracterização máquina co2\testes\17°C\86 bar\teste_17_86.xlsx", index=False)
+df_cop.to_excel("endereço para salver os dados (nome + .xlsx)", index=False)
